@@ -5,7 +5,7 @@ import axios from "axios";
 interface IProps {}
 
 const Table: React.FunctionComponent<IProps> = () => {
-    const [data, setData] = useState({ blogs: [] });
+    const [data, setData] = useState();
     const url = 'http://localhost:4001/v1/api/pricing/csv'
 
     useEffect(() => {
@@ -14,10 +14,11 @@ const Table: React.FunctionComponent<IProps> = () => {
         console.log(data);
       };
       fetchCsvData();
-    }, []);
+    }, [setData]);
 
   
-    // const headings = Object.keys(data[0]);
+    // const headings = Object.keys(data.blogs[0]);
+    // console.log({headings})
 
     return (
       <div>
