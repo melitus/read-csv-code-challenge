@@ -1,6 +1,5 @@
 /* eslint-disable array-callback-return */
 import React, { useEffect, useState } from "react";
-import * as ReactBootStrap from "react-bootstrap";
 import axios from "axios";
 
 import './Table.css';
@@ -8,7 +7,7 @@ import './Table.css';
 interface IProps {}
 
 
-const CsvReader: React.FunctionComponent<IProps> = () => {
+const CsvReaderTable: React.FunctionComponent<IProps> = () => {
     const [csvFile, setCsvFile] = useState<any>([]);
     
     
@@ -18,7 +17,7 @@ const CsvReader: React.FunctionComponent<IProps> = () => {
     }, []);
 
     const fetchCsvData = async () => {
-      const url = 'http://localhost:4001/v1/api/pricing/csv'
+      const url = 'http://localhost:5000/v1/api/pricing/csv'
       const response = await axios.get(url)
       console.log('response', response.data.data)
       setCsvFile(response.data.data)
@@ -36,6 +35,7 @@ const CsvReader: React.FunctionComponent<IProps> = () => {
 
   const renderBody = () => {
     return csvFile && csvFile.map((result: any, i: any) => {
+      console.log('result', result)
         return (
             <tr key={i}>
                 <td>{result.Tiers}</td>
@@ -62,4 +62,4 @@ const CsvReader: React.FunctionComponent<IProps> = () => {
     );
   };
 
-export default CsvReader;
+export default CsvReaderTable;
