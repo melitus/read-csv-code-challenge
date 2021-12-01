@@ -1,0 +1,41 @@
+{
+	"info": {
+		"_postman_id": "550c03cd-3a9a-428f-a329-c0ea1b2dccfb",
+		"name": "csv parser",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "read data from csv",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJleHAiOjE1OTM2NDE4NzgsImlhdCI6MTU5MzY3ODU3NSwic3ViIjoiNWVlYzlmODQ5YmQzZDEzM2NkNzUzNjE4In0.Yob3jGxSUraH6xdUdRmkSCz0tbaISQ-RnWjBs81FyK31L6r0gK1RMf196CJHdc-tTf3LcP3-oJuBdvVucpERxg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4001/v1/api/pricing/csv",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4001",
+					"path": [
+						"v1",
+						"api",
+						"pricing",
+						"csv"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
