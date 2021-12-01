@@ -5,24 +5,36 @@ import axios from "axios";
 interface IProps {}
 
 const Table: React.FunctionComponent<IProps> = () => {
-    const [data, setData] = useState();
+    const [data, setData] = useState({ csv: []});
     const url = 'http://localhost:4001/v1/api/pricing/csv'
 
     useEffect(() => {
       const fetchCsvData = async () => {
-        axios.get(url).then(json => setData(json.data))
+        axios.get(url).then(json => setData({csv:json.data}))
         console.log(data);
       };
       fetchCsvData();
-    }, [setData]);
+    }, []);
 
   
-    // const headings = Object.keys(data.blogs[0]);
-    // console.log({headings})
+    const headings = Object.keys(data.csv[0]);
 
     return (
       <div>
-        <h1>i am here</h1>
+        <ReactBootStrap.Table striped bordered hover size="sm">
+          <thead> 
+          <tr>
+            {headings.map((heading) => <th>{heading}</th>)}
+          </tr>
+          </thead>
+          <tbody>
+          {data.csv.map((row) => (
+            <tr>
+              {headings.map((heading) => <td>{row[heading]}</td>)}
+            </tr>
+          ))}
+          </tbody>
+        </ReactBootStrap.Table>
       </div>
     );
   };
