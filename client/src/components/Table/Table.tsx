@@ -11,31 +11,37 @@ const Table: React.FunctionComponent<IProps> = () => {
     useEffect(() => {
       const fetchCsvData = async () => {
         axios.get(url).then(json => setData({csv:json.data}))
-        console.log(data);
       };
       fetchCsvData();
     }, []);
+    console.log({data});
 
   
-    const headings = Object.keys(data.csv[0]);
+    // const headings = Object.keys(data.csv.data[0]);
 
     return (
       <div>
-        <ReactBootStrap.Table striped bordered hover size="sm">
-          <thead> 
-          <tr>
-            {headings.map((heading) => <th>{heading}</th>)}
-          </tr>
+<ReactBootStrap.Table striped bordered hover size="sm">
+          <thead>
+            <tr>
+              <th>Tiers</th>
+              <th>Starter</th>
+              <th>Advanced</th>
+              <th>Enterprise</th>
+            </tr>
           </thead>
           <tbody>
-          {data.csv.map((row) => (
-            <tr>
-              {headings.map((heading) => <td>{row[heading]}</td>)}
-            </tr>
-          ))}
+            {data.csv &&
+              data.csv.map((item) => (
+                <tr key={item.Tiers}>
+                  <td>{item.Tiers}</td>
+                  <td>{item.Starter}</td>
+                  <td>{item.Advanced}</td>
+                  <td>{item.Enterprise}</td>
+                </tr>
+              ))}
           </tbody>
-        </ReactBootStrap.Table>
-      </div>
+        </ReactBootStrap.Table>      </div>
     );
   };
 
