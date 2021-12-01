@@ -1,48 +1,63 @@
+/* eslint-disable array-callback-return */
 import React, { useEffect, useState } from "react";
 import * as ReactBootStrap from "react-bootstrap";
 import axios from "axios";
 
 interface IProps {}
 
-const Table: React.FunctionComponent<IProps> = () => {
-    const [data, setData] = useState({ csv: []});
-    const url = 'http://localhost:4001/v1/api/pricing/csv'
 
+const CsvReader: React.FunctionComponent<IProps> = () => {
+    const [csvFile, setCsvFile] = useState<any>([]);
+    
+    
     useEffect(() => {
-      const fetchCsvData = async () => {
-        axios.get(url).then(json => setData({csv:json.data}))
-      };
+      console.log('useEffect called')
       fetchCsvData();
     }, []);
-    console.log({data});
 
-  
-    // const headings = Object.keys(data.csv.data[0]);
+    const fetchCsvData = async () => {
+      const url = 'http://localhost:4001/v1/api/pricing/csv'
+      const response = await axios.get(url)
+      console.log('response', response.data.data)
+      setCsvFile(response.data.data)
+  }
 
-    return (
-      <div>
-<ReactBootStrap.Table striped bordered hover size="sm">
-          <thead>
-            <tr>
-              <th>Tiers</th>
-              <th>Starter</th>
-              <th>Advanced</th>
-              <th>Enterprise</th>
+  const renderHeader = () => {
+      let headerElement = ['tiers', 'starter', 'enterprise', 'advanced']
+
+      return ( 
+        headerElement.map((key, index) => {
+          return <th key={index}>{key.toUpperCase()}</th>
+      })
+  )
+    } 
+
+  const renderBody = () => {
+    return csvFile && csvFile.map((result: any, i: any) => {
+        return (
+            <tr key={i}>
+                <td>{result.Tiers}</td>
+                <td>{result.Starter}</td>
+                <td>{result.Enterprise}</td>
+                <td>{result.Advanced}</td>
             </tr>
-          </thead>
-          <tbody>
-            {data.csv &&
-              data.csv.map((item) => (
-                <tr key={item.Tiers}>
-                  <td>{item.Tiers}</td>
-                  <td>{item.Starter}</td>
-                  <td>{item.Advanced}</td>
-                  <td>{item.Enterprise}</td>
-                </tr>
-              ))}
-          </tbody>
-        </ReactBootStrap.Table>      </div>
+        )
+    })
+}
+ 
+    return (
+       <>
+            <h1 id='title'>CSV Reader Code Challenge</h1>
+            <table id='csv'>
+                <thead>
+                   {renderHeader()}
+                </thead>
+                <tbody>
+              {renderBody()}
+                </tbody>
+            </table>
+        </>
     );
   };
 
-export default Table;
+export default CsvReader;
