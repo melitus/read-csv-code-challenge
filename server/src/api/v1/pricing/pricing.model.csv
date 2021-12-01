@@ -1,0 +1,21 @@
+﻿Tiers,Starter,Advanced,Enterprise
+Price (€),3,10,100
+Description,Good place to start,For the startup with more needs,for big companies with big dreams
+,,,
+Reporting,,,
+Detailed Reports,-,X,X
+Weekly Data Reports,-,X,X
+Create your own reports,X,X,X
+,,,
+Blog,,,
+Create your own blog,X,X,X
+Upload Images,-,X,X
+,,,
+File Storage,,,
+Upload files,-,X,-
+Share files with team,X,X,X
+Watch Videos,-,-,-
+,,,
+Application Intergrations,,,
+Install new apps,-,X,X
+Install custom apps,X,-,-
