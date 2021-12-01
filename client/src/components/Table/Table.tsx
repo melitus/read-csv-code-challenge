@@ -3,6 +3,8 @@ import React, { useEffect, useState } from "react";
 import * as ReactBootStrap from "react-bootstrap";
 import axios from "axios";
 
+import './Table.css';
+
 interface IProps {}
 
 

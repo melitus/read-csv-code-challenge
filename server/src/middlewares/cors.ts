@@ -2,7 +2,7 @@
 /* eslint-disable import/prefer-default-export */
 const cors = require('cors');
 
-const ALLOWED_ORIGINS = ['http://localhost:8008'];
+const ALLOWED_ORIGINS = ['http://localhost:3000'];
 
 export const initCors = (app) => {
   app.use(
