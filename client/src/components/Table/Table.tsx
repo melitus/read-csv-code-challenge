@@ -4,12 +4,15 @@ import axios from "axios";
 
 import './Table.css';
 
-interface IProps {}
+type CsvResult = {
+  Tiers: string;
+  Starter: string;
+  Enterprise: string;
+  Advanced: string;
+};
 
-
-const CsvReaderTable: React.FunctionComponent<IProps> = () => {
-    const [csvFile, setCsvFile] = useState<any>([]);
-    
+const CsvDataListTable: React.FunctionComponent = () => {
+    const [csvFile, setCsvFile] = useState<CsvResult[]>([]);
     
     useEffect(() => {
       console.log('useEffect called')
@@ -34,10 +37,10 @@ const CsvReaderTable: React.FunctionComponent<IProps> = () => {
     } 
 
   const renderBody = () => {
-    return csvFile && csvFile.map((result: any, i: any) => {
+    return csvFile?.map((result: Record<string, string>, index: number) => {
       console.log('result', result)
         return (
-            <tr key={i}>
+            <tr key={index}>
                 <td>{result.Tiers}</td>
                 <td>{result.Starter}</td>
                 <td>{result.Enterprise}</td>
@@ -55,11 +58,11 @@ const CsvReaderTable: React.FunctionComponent<IProps> = () => {
                    {renderHeader()}
                 </thead>
                 <tbody>
-              {renderBody()}
+                   {renderBody()}
                 </tbody>
             </table>
         </>
     );
   };
 
-export default CsvReaderTable;
+export default CsvDataListTable;
